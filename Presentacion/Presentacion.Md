@@ -14,6 +14,7 @@
 |Primaria      |Esc. Primaria I.Zaragoza     | 2008-2014      |
 |Secudnaria    |Secundaria No #3             | 2014-2017      |
 |Preparatoria  |Conalep 246                  | 2017-2020      |
+|Universidad   |Tecnologico de nuevo laredo  | 2020-Actualidad|
 
 
 ### Lenguajes que Domino 
