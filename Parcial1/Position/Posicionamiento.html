@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+   <style>
+
+    .Caja{
+        background-color: cornflowerblue;
+        color: yellow;
+        width: 150px;
+        height: 120px;
+        margin: 5px;
+    }
+
+
+    #caja2{
+        position: relative;
+        left: 100px;
+    }
+
+    #caja3{
+        position: absolute;
+        top: 200px;
+        left: 300px;
+    }
+
+    #caja4{
+        position:fixed;
+        top:20px;
+        right: 20px;
+    }
+
+    #caja5 {
+        position:sticky;
+        top: 0px;
+
+    }
+
+
+    /* 
+    
+    Static se coloca  en su posicion a su flujo, y sus espacio se reserva. 
+    relative se coloca en su posicion a su flujo y su espacio se reserva. 
+    position absolute  se coloca en su espacio al flujo, su espacion se elimina.
+     fixed  se coloca respecto al navegador su espacio se elimina. 
+     sticky  es una combinacion entre relative y fixeel 
+     
+     
+     
+     */
+
+   </style>
+
+</head>
+<body>
+    <div  id="caja1"  class="Caja">static</div>
+    <div  id="caja2"  class ="Caja">relative</div>
+    <div  id="caja3"  class="Caja">absolute</div>
+    <div  id="caja4"  class="Caja">fixed</div>
+    <div  id="caja5"  class="Caja">sticky</div>
+    <div  id="caja6"  class="Caja">static</div>
+    <div  id="caja7"  class="Caja">static</div>
+</body>
+</html>
