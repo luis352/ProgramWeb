@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            border: 2px solid blue;
+            background-color: aqua;
+            color: blue;
+            height: 90%;
+            position: absolute;
+        }
+
+        #sibeBar {
+            width: 30%;
+            left: 0; 
+        }
+
+        #content {
+            width: 70%;
+            left: 30%; 
+        }
+
+        .head {
+            border: 2px solid yellow;
+            background-color: aqua;
+        }
+
+        #Header {
+            height: 10%;
+        }
+    </style>
+</head>
+<body>
+    <div class="head" id="Header"> Header</div>
+    <div class="content" id="sibeBar">SideBar</div> 
+    <div class="content" id="content">Content</div>
+</body>
+</html>
