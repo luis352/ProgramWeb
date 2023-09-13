@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .Contenedor{
+
+            height: 100vh;
+            width: 100vw;
+            /* background-color: blue; */
+            display: grid;
+            grid-template-columns: 20% 40% 40%  ;
+            grid-template-rows: 45% 55% 25%  ;
+            /* justify-content:  center; */
+            align-items:  stretch;
+            justify-items: stretch;
+
+            grid-template-areas: 'enca  col1  col2' 
+                                 'enca  col3 col4';
+                                 
+
+            
+            /* cuantas conlumnas son  acomodar tus cajitas en una cuadricula.  */
+
+
+        }
+
+        .Caja{
+            /* width: 100px ; */
+            /* height: 100px; */
+            background-color: aqua;
+            border: 1PX solid blue;
+           
+        }
+
+
+    
+        #C1{
+            grid-area: enca;
+        }
+        #C2{
+            grid: col1;
+
+        }
+
+        #C3{
+            grid: col2;
+        }
+
+        #C4{
+            grid:col3
+        }
+       
+        #C5{
+            grid: col4
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    
+    <div class="Contenedor"> 
+        <div  id="C1" class="Caja">Caja1</div>
+        <div  id="C2" class="Caja">Caja2</div>
+        <div  id="C3" class="Caja">Caja3</div>
+        <div  id="C4" class="Caja">Caja4</div>
+        <div  id="C5" class="Caja">Caja5</div>
+        <!-- <div  id="C6" class="Caja">Caja6</div> -->
+
+       
+    
+    </div>
+
+
+
+
+
+
+
+
+</body>
+</html>
