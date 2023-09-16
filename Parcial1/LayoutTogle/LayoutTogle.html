@@ -16,7 +16,7 @@
             margin: 0;
         }
 
-        .content {
+        .cont {
             border: 2px solid blue;
             background-color: aqua;
             color: blue;
@@ -24,7 +24,7 @@
             position: absolute;
         }
 
-        #sibeBar {
+        #sideBar {
             width: 30%;
             left: 0; 
         }
@@ -43,12 +43,40 @@
             height: 10%;
             text-align:  center;
         }
+
+
+        input#toggle{
+            display: none;
+        }
+
+        input:checked + div#sideBar{
+            display: none;
+        }
+
+
+        input :checked ~ div#content  {
+            width: 100%;
+        }
+
+
+
+
+
     </style>
 </head>
 <body>
     <div class="head" id="Header"> Header</div>
-    <div class="content" id="sibeBar">SideBar</div> 
-    <div class="content" id="content">Content</div>
+
+    <input id="toggle" type="checkbox"> 
+    <div class="cont" id="sideBar">SideBar</div> 
+    <div  class="cont" id="content">
+        <label for="toggle">Menu</label>   
+        <center>Content</center>
+    </div>
+
+
+   
+    
     
 </body>
 </html>
