@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        body{
+
+            font-family: arial, Heveltica, sans-serif; 
+            max-width:  500px ;
+            margin: 0 auto;
+            
+
+        }
+
+        
+        body:has(input:checked){
+            background-color: var(--color-secundario);
+
+        }
+
+        :root{
+            --color-primario: yellow ;
+            --color-secundario:orange;
+
+        }
+
+        input:checked +div#contenedor{
+            background-color: var(--color-secundario);
+
+        }
+
+        div#contenedor{
+            background-color: var(--color-primario);
+
+        }
+
+
+
+        .parrafo{
+            color: black;
+            text-align: center;
+        }
+
+        */  selector basico de Id     */
+        #par1 {
+
+            font-family:  20px;
+        }
+        */  selector basico de etiqueta   */
+        h1 {
+            margin-top: 0 ;
+            color:  blue;
+        }
+
+        */  selector basico de Id     */
+        #img1 {
+            float: Center;
+            width: 200px; 
+            margin: 0 0 20px 20px; 
+            height: 0%;
+        }
+
+        #img1{
+            width: 200px;
+            
+
+        }
+
+        #contenedor{
+            width: 100%;
+              height: 100%  ;
+        }
+
+     /* operadores de desendencia ver en selectrores  
+            selectroes relacionales
+
+            selectores basicos 
+            universal * 
+            etiqueta 
+            # id 
+            .clase 
+
+
+            selector de  relacion 
+            div espacio p Descendencia        seleciona<p> si esta dentro de un div 
+            div > p Decendencia directa      seleciona <p> solo si es hijo directon del div
+                                            
+
+            div + p hermano adyacente  seelciona <p> si esta enseguida del div 
+            div ~ p hermano general.   seleciona <p> si esta despues del div 
+
+
+                
+                Notas 
+                psodouselectores
+                nos permiten aplicar palabras claves junto al elemento que desea ponerse una parte del 
+
+                tiene psuedoelemento y spdouclases, 
+
+                spsouclases estados de los elementos. 
+
+                hover,  nos permite que el elemento cambie de color.
+
+                selecionado el elemento  focus. 
+
+                firt chourt    selciona el primer hijo 
+
+                p:  firts letter    Seleciona la primera letra del elemento p 
+
+
+                firt-line 
+                p:  la primera linea del parrafo 
+
+                p:: before    
+                antes del elemento 
+
+                after 
+
+                lo agrega despues del elemento 
+
+                a link   ligas no visitadas
+
+                a : visited 
+
+                pseudoselectrores estructurales. 
+
+
+                selectores de atributos. 
+
+                depediendo del atributo   se va selecionar esto.
+
+                especificidad       
+                es el peso del selector 
+
+                important nadien le gana a este. 
+
+                etiqueta html 1000puntos   sytle en la etiqueta de apertura   
+                Id = 100 
+                Class 10 
+                Elemento 1  o etiquetas
+                
+                
+            */
+        
+        
+        
+       
+
+
+
+        
+    </style>
+</head>
+<body>
+    
+<label for="tema">Tema</label>    
+<input id="tema" type="checkbox">
+
+
+
+
+<div id="contenedor">   
+<h1>Cristiano Ronaldo</h1>
+
+<div>
+    <img id="img1"  class="right" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Cristiano_Ronaldo_2018.jpg/330px-Cristiano_Ronaldo_2018.jpg" />
+
+    
+</div>
+
+
+<p id="par1" class="parrafo">Cristiano Ronaldo dos Santos Aveiro (Funchal, Madeira; 5 de febrero de 1985), conocido como Cristiano Ronaldo, es un futbolista portugués. Juega como extremo izquierdo o delantero y su equipo actual es el Al-Nassr F. C. de la Liga Profesional Saudí.18​ Es internacional absoluto con la selección de Portugal, de la cual es capitán, máximo goleador histórico y jugador con más presencias con 200 partidos, logro alcanzado en las eliminatorias para la Eurocopa 2024, reconocido por el Libro Guinness de los récords.</p>
+
+<p id="par2" class="parrafo">Considerado con frecuencia el mejor y más completo futbolista,​así como el mayor goleador del mundo, ​además de uno de los mejores de todos los tiempos;​ es uno de los futbolistas más laureados de la historia, habiendo ganado, entre otras distinciones, cinco veces el Balón de Oro, cinco premios de la FIFA al mejor jugador del mundo y cuatro Botas de Oro. En 2020, tuvo el honor de ser elegido el mejor Jugador del Siglo xxi en la gala de los Globe Soccer Awards, convirtiéndose en el primer futbolista europeo y el primer portugués en recibirlo, además de ser incluido en el Dream Team del Balón de Oro.25​</p>
+<p id="par3" class="parrafo">Identificado habitualmente en los medios de comunicación con el numerónimo CR7,es con 847 goles el máximo goleador en la historia del fútbol profesional,y con 450 el máximo goleador histórico del Real Madrid Club de Fútbol,n consiguiéndolo en las nueve temporadas que jugó en este club. </p>
+
+</div>
+
+
+</body>
+</html>
+
+
