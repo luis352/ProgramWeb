@@ -1,0 +1,36 @@
+Variables 
+Var va dentro de una funcion y se ve reflejada solo en la funcion
+
+todas las variblaes que declares con var javascrip las mueve al inicio debido al hoisting. 
+
+Tipos de datos primitivos
+
+Tipos de datos number string, viging, bolean,   null , undefine, Symbol
+
+
+lef   solo se ve en el ambito de bloque 
+
+
+
+
+modulo archivo de javascript que exporta funciones. clases objetos.
+
+
+
+
+
+es la publicacion del paquete para que otros la publiquen. 
+
+
+
+si le incluyen un pakcka.json  ya es un paquete 
+
+
+
+ema se utiliza en el navegador. 
+
+
+
+
+
+
