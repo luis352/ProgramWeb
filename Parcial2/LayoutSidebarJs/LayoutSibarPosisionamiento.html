@@ -1,0 +1,89 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .content {
+            border: 2px solid blue;
+            background-color: aqua;
+            color: blue;
+            height: 90%;
+            position: absolute;
+        }
+
+        #sibeBar {
+            width: 30%;
+            left: 0; 
+        }
+
+        #content {
+            width: 70%;
+            left: 30%; 
+        }
+
+        .sibeBarEscondido{
+            display: none;
+        }
+
+        .contenidoAlCien{
+            
+            left: 0 !important;
+            width: 100% !important; 
+
+
+        }
+
+
+        .head {
+            border: 2px solid yellow;
+            background-color: aqua;
+        }
+
+        #Header {
+            height: 10%;
+            text-align:  center;
+        }
+    </style>
+</head>
+<body>
+    <div class="head" id="Header"> Header</div>
+    <div class="content" id="sibeBar">SideBar</div> 
+    <div id="content" class="content">Content
+     <button id="btn" type="button">ToglgleMenu</button>
+
+
+
+
+    </div>
+
+    
+
+    <script>
+       let btnMenu =   document.getElementById("btn");
+       btnMenu.addEventListener("click",  function(){
+        console.log("Clic en el boton")
+        document.getElementById("sibeBar").classList.toggle("sibeBarEscondido"); 
+        document.getElementById("content").classList.toggle("contenidoAlCien")
+       }
+       )
+
+
+
+
+    </script>
+    
+</body>
+</html>

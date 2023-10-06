@@ -32,5 +32,29 @@ ema se utiliza en el navegador.
 
 
 
+manipulacion de DOM con JavaScript 
+el modelo de los objetos de documento   
+es una interfaz de programacion para los documentos html 
+
+
+selecionar los elementos  getelementbyId(id) 
+getElementsbyClassName(Class) 
+getElementByName(value)
+getElemtsbyTagName
+
+
+
+representcion en objetos del documentos. 
+
+
+
+
+
+
+
+
+
+
+
 
 
