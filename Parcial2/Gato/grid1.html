@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego del Gato</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Contenedor {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            max-width: 300px;
+            justify-content: center;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .Caja {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100px;
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        .Caja:hover {
+            background-color: #e0e0e0;
+        }
+
+        #btn {
+            grid-column: span 3;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        #btn button {
+            padding: 10px 20px;
+            font-size: 24px;
+            background-color: rgb(37, 3, 71);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #btn button:hover {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="Contenedor" id="cont">
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div class="Caja"></div>
+        <div id="btn"><button type="button">Reiniciar</button></div>
+    </div>
+
+    <script>
+        var currentPlayer = "X";
+        var boxes = document.querySelectorAll('.Caja');
+
+        boxes.forEach(function(box) {
+            box.addEventListener("click", function() {
+                if (box.innerText === "") {
+                    box.innerText = currentPlayer;
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
+                }
+            });
+        });
+
+        document.getElementById("btn").addEventListener("click", function() {
+            boxes.forEach(function(box) {
+                box.innerText = "";
+            });
+            currentPlayer = "X";
+        });
+    </script>
+</body>
+</html>
