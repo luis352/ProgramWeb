@@ -53,6 +53,8 @@
             border-radius: 5px;
         }
 
+        
+
         #btn button:hover {
             background-color: green;
         }
@@ -72,22 +74,25 @@
         <div id="btn"><button type="button">Reiniciar</button></div>
     </div>
 
+   
     <script>
         var currentPlayer = "X";
         var boxes = document.querySelectorAll('.Caja');
-
+    
         boxes.forEach(function(box) {
             box.addEventListener("click", function() {
                 if (box.innerText === "") {
                     box.innerText = currentPlayer;
-                    currentPlayer = currentPlayer === "X" ? "O" : "X"   ;
+                    box.style.color = currentPlayer === "X" ? "blue" : "red"; // Cambia el color de acuerdo al jugador
+                    currentPlayer = currentPlayer === "X" ? "O" : "X";
                 }
             });
         });
-
+    
         document.getElementById("btn").addEventListener("click", function() {
             boxes.forEach(function(box) {
                 box.innerText = "";
+                box.style.color = ""; 
             });
             currentPlayer = "X";
         });
