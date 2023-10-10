@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego del Gato</title>
 
+
+            <script
+        src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
     <style>
         * {
             box-sizing: border-box;
@@ -73,24 +79,53 @@
     </div>
 
     <script>
-        var currentPlayer = "X";
-        var boxes = document.querySelectorAll('.Caja');
+        // var currentPlayer = "X";
+        // var boxes = document.querySelectorAll('.Caja');
 
-        boxes.forEach(function(box) {
-            box.addEventListener("click", function() {
-                if (box.innerText === "") {
-                    box.innerText = currentPlayer;
-                    currentPlayer = currentPlayer === "X" ? "O" : "X"   ;
+        // boxes.forEach(function(box) {
+        //     box.addEventListener("click", function() {
+        //         if (box.innerText === "") {
+        //             box.innerText = currentPlayer;
+        //             currentPlayer = currentPlayer === "X" ? "O" : "X"   ;
+        //         }
+        //     });
+        // });
+
+        // document.getElementById("btn").addEventListener("click", function() {
+        //     boxes.forEach(function(box) {
+        //         box.innerText = "";
+        //     });
+        //     currentPlayer = "X";
+        // });
+
+
+
+        $('document').ready(function(){
+            var xo = "X";
+            $('.Caja').click(function(e){
+                if( $(e.target).text()=="") {  
+                if( xo== "X")  {xo = "O"}  else {xo= "X"}
+                $(e.target).text(xo);
                 }
             });
+                
+            
         });
 
-        document.getElementById("btn").addEventListener("click", function() {
-            boxes.forEach(function(box) {
-                box.innerText = "";
+        $("#btn").click(function(){
+            $(".caja").each(function( ){
+
+                
             });
-            currentPlayer = "X";
+
+
         });
+
+
+
+
+
+
     </script>
 </body>
 </html>
