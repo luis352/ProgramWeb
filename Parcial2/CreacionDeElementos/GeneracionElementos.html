@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugadores Mejor Pagados 2021</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor"></div>
+    
+    <script>
+        let encabezados = ['Nombre', 'ApellidoP', 'ApellidoM'];
+        let tab = document.createElement("table");
+        let enc = document.createElement("thead");
+        let fil = document.createElement('tr');
+        let datos = [
+            {
+                nombre: "Cristiano Ronaldo",
+                apellidop: "Dos Santos",
+                apellidom: "Aveiro",
+            },
+            {
+                nombre: "Lionel Andres",
+                apellidop: "Messi",
+                apellidom: "Cuchitini",
+            },
+            {
+                nombre: "Neymar Jr",
+                apellidop: "Da Silva",
+                apellidom: "Santos",
+            },
+            {
+                nombre: "Kylian",
+                apellidop: " Mbappé",
+                apellidom: "Lottin",
+            },
+            {
+                nombre: "Mohamed Salah",
+                apellidop: "Hame",
+                apellidom: " Mahrous Ghaly",
+            }
+        ];
+
+        encabezados.forEach(elemento => {
+            let th = document.createElement("th");
+            th.innerText = elemento;
+            fil.appendChild(th);
+        });
+
+        enc.appendChild(fil);
+        tab.appendChild(enc);
+
+        tbody = document.createElement("tbody");
+
+        datos.forEach(function (elemento) {
+            let fila = document.createElement("tr");
+
+            let td1 = document.createElement("td");
+            td1.innerText = elemento.nombre;
+            fila.appendChild(td1);
+
+            let td2 = document.createElement("td");
+            td2.innerText = elemento.apellidop;
+            fila.appendChild(td2);
+
+            let td3 = document.createElement("td");
+            td3.innerText = elemento.apellidom;
+            fila.appendChild(td3);
+
+            tbody.appendChild(fila);
+        });
+
+        tab.appendChild(tbody);
+
+        document.getElementById("contenedor").appendChild(tab);
+    </script>
+</body>
+</html>
