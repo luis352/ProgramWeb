@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">Peticion XMLHTTP</button>
+    <button id="btn2">Peticion Jquery ajax</button>
+    <button id="btn3">Peticion Jquery GET</button>
+    <button id="btn4">Peticion Jquery GET JSON</button>
+    <button id="btn5">Peticion Fetch</button>
+    <button id="btn6">Peticion feth async</button>
+    <button id="btn7">Peticion AXIOS</button>
+    
+
+    <!-- https://pokeapi.co/api/v2/pokemon/ditto -->
+    <div id="resultado">
+
+
+    </div>
+
+    <script>
+        //vanilla
+        //-----------------------------------------------------------------------------------------------------
+        window.onload = function () {
+            document.getElementById("btn").addEventListener("click", function () {
+                console.log("Click en boton");
+
+                let solicitud = new XMLHttpRequest();
+                solicitud.responseType = 'json';
+                solicitud.onload = function () {
+                    console.log(solicitud.response);
+                    document.getElementById("resultado").innerText = solicitud.response.value;
+                }
+                solicitud.open("GET", "https://api.chucknorris.io/jokes/random", true);
+                solicitud.send();
+            });
+              // feth 
+            document.getElementById("btn5").addEventListener("click", function () {
+                fetch("https://api.chucknorris.io/jokes/random")
+                    .then(respuesta => respuesta.json())
+                    .then(datoJson => { 
+                        document.getElementById("resultado").innerText = datoJson.value
+                        console.log(datoJson) })
+
+
+            });
+
+
+
+            document.getElementById("btn7").addEventListener("click", function () {
+                axios
+                    ({
+                        method: 'get',
+                        url: 'https://api.chucknorris.io/jokes/random',
+                        //responseType: 'stream'
+                    })
+                    .then(function (response) {
+                        //response.data.pipe(fs.createWriteStream('ada_lovelace.jpg'))
+                        console.log(response.data.value);
+                        document.getElementById("resultado").innerText = response.data.value;
+                    });
+            });
+
+
+
+            document.getElementById("btn6").addEventListener("click",  async  function () {
+                // fetch("https://api.chucknorris.io/jokes/random")
+                //     .then(respuesta => respuesta.json())
+                //     .then(datoJson => { 
+                //         document.getElementById("resultado").innerText = datoJson.value
+                //         console.log(datoJson) })
+
+                let respuesta =await fetch("https://api.chucknorris.io/jokes/random");
+                let datoJson = await respuesta.json();
+                document.getElementById("resultado").innerText=datoJson.value;
+
+            });
+
+  
+        }
+
+
+        //Con jQuery Ajax / JQuery
+        $(document).ready(function () {
+            //Con jQuery Ajax / JQuery
+            $("#btn2").click(function () {
+
+                $.ajax({
+                    url: "https://api.chucknorris.io/jokes/random"
+                }).done(function (respuesta) {
+                    console.log(respuesta);
+                    // document.getElementById("resultado").innerText=respuesta.value;
+                    $("#resultado").text(respuesta.value)
+                })
+
+            })
+        })
+
+
+
+
+        $(document).ready(function () {
+
+            //Get
+            $("#btn3").click(function () {
+                $.get("https://api.chucknorris.io/jokes/random", function (respuesta) {
+                    console.log(respuesta);
+                    $("#resultado").text(respuesta.value);
+                }, "json")
+
+
+            })
+
+            //GetJson
+            $("#btn4").click(function () {
+                $.getJSON("https://api.chucknorris.io/jokes/random", function (respuesta) {
+                    $("#resultado").text(respuesta.value);
+                })
+
+
+            })
+        })
+
+
+
+
+        //feth 
+
+
+
+
+    </script>
+</body>
+
+</html>
