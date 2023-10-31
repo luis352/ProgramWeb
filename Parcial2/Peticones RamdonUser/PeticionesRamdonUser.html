@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <button id="btn">Peticion XMLHTTP</button>
+    <button id="btn2">Peticion Fetch</button>
+    <button id="btnAsync">Peticion Async</button>
+    <button id="btnAjax">Peticion Ajax</button>
+    <button id="btnJq">Peticion Jq</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        //  Define una función llamada getRandomData que toma los datos completos y selecciona un conjunto de datos aleatorio.
+        function getRandomData(data) {
+            const randomIndex = Math.floor(Math.random() * data.length); 
+            const randomItem = data[randomIndex];  
+            return {
+                id: randomItem.id,
+                first_name: randomItem.first_name,
+                last_name: randomItem.last_name,
+                username: randomItem.username,
+                email: randomItem.email
+            }; 
+        }
+
+        
+
+
+        // PETICION XMLTHTTPREQUETS
+        window.onload = function () {
+            document.getElementById("btn").addEventListener("click", function () {
+                let solicitud = new XMLHttpRequest();
+                solicitud.responseType = 'json';
+                solicitud.onload = function () {
+                    const data = solicitud.response;
+                    const randomData = getRandomData(data); 
+                    document.getElementById("resultado").innerText = JSON.stringify(randomData, null, 2);
+                }
+                solicitud.open("GET", "https://random-data-api.com/api/v2/users?size=10&is_xml=false", true);
+                solicitud.send();
+            });
+
+            document.getElementById("btn2").addEventListener("click", () => {
+                fetch("https://random-data-api.com/api/v2/users?size=10&is_xml=false")
+                    .then(response => response.json())
+                    .then(data => {
+                        const randomData = getRandomData(data);
+                        document.getElementById("resultado").innerText = JSON.stringify(randomData, null, 2);
+                    })
+                    .catch(error => {
+                        console.error("Error en la solicitud Fetch:", error);
+                    });
+            });
+
+            document.getElementById("btnAsync").addEventListener("click", async () => {
+                try {
+                    let objRespuesta = await fetch("https://random-data-api.com/api/v2/users?size=10&is_xml=false");
+                    let datoJson = await objRespuesta.json();
+                    const randomData = getRandomData(datoJson);
+                    document.getElementById("resultado").innerText = JSON.stringify(randomData, null, 2);
+                } catch (error) {
+                    console.error("Error en la solicitud Async:", error);
+                }
+            });
+
+            document.getElementById("btnAjax").addEventListener("click", () => {
+                $.ajax({
+                    url: 'https://random-data-api.com/api/v2/users?size=10&is_xml=false',
+                    success: function (datoJson) {
+                        const randomData = getRandomData(datoJson);
+                        document.getElementById("resultado").innerText = JSON.stringify(randomData, null, 2);
+                    },
+                    error: function (error) {
+                        console.error("Error en la solicitud Ajax:", error);
+                    }
+                });
+            });
+
+            document.getElementById("btnJq").addEventListener("click", () => {
+                $.getJSON("https://random-data-api.com/api/v2/users?size=10&is_xml=false", function (datoJson) {
+                    const randomData = getRandomData(datoJson);
+                    document.getElementById("resultado").innerText = JSON.stringify(randomData, null, 2);
+                })
+                .fail(function (error) {
+                    console.error("Error en la solicitud Jq:", error);
+                });
+            });
+        }
+
+
+    </script>
+</body>
+</html>
