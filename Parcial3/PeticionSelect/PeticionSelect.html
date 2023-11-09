@@ -1,0 +1,142 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="btn5">Peticion Fetch</button>
+    <Select id="razas">Razas</Select>
+    <img src=""></div>
+
+
+    <script>
+
+                    window.onload = function(){ 
+                    fetch("https://dog.ceo/api/breeds/list/all")
+                        .then(respuesta => respuesta.json())
+                        .then(function(dato){
+                            
+                            for (const property in dato.messege){
+                                console.log(dato.message); 
+                                let opcion = document.createElement("option");
+                                opcion.value = property; 
+                                opcion.innerText = property; 
+                                document.getElementById("razas").appendChild(opcion); 
+                            } 
+                        }); 
+                    }
+    
+
+                    document.getElementById("Peticion").addEventListener("click", () => {
+                        let opcion = document.getElementById("razas").value;
+                        fetch('https://dog.ceo/api/breeds/${opcion}/images/random')
+                        then(respuesta => respuesta.json())
+                        then(function(dato)  {
+                            document.getElementById("fotoperro").src = dato.message; 
+                        } )
+                    })
+
+
+    
+
+    </script>
+
+
+</body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Dog Image</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        img {
+            max-width: 100%;
+            margin-top: 20px;
+            border: 4px solid #007BFF;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Dog Image Generator</h1>
+    <button id="btn5">Fetch Random Dog Image</button>
+    <select id="razas">
+        <option value="">Select a Breed</option>
+    </select>
+    <img id="fotoperro" src="" alt="Random Dog Image">
+
+    <script>
+       window.onload = function () {
+            fetch("https://dog.ceo/api/breeds/list/all")
+                .then(respuesta => respuesta.json())
+                .then(function (dato) {
+                    for (const property in dato.message) {
+                        let opcion = document.createElement("option");
+                        opcion.value = property;
+                        opcion.innerText = property;
+                        document.getElementById("razas").appendChild(opcion);
+                    }
+                });
+        }
+
+        document.getElementById("btn5").addEventListener("click", () => { // Cambiado "Peticion" a "btn5"
+            let opcion = document.getElementById("razas").value;
+            fetch(`https://dog.ceo/api/breed/${opcion}/images/random`) // Cambiado "${opcion}" a `https://dog.ceo/api/breed/${opcion}/images/random`
+                .then(respuesta => respuesta.json())
+                .then(function (dato) {
+                    document.getElementById("fotoperro").src = dato.message;
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+</body>
+</html>
