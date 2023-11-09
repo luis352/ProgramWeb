@@ -1,56 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    
-    <button id="btn5">Peticion Fetch</button>
-    <Select id="razas">Razas</Select>
-    <img src=""></div>
-
-
-    <script>
-
-                    window.onload = function(){ 
-                    fetch("https://dog.ceo/api/breeds/list/all")
-                        .then(respuesta => respuesta.json())
-                        .then(function(dato){
-                            
-                            for (const property in dato.messege){
-                                console.log(dato.message); 
-                                let opcion = document.createElement("option");
-                                opcion.value = property; 
-                                opcion.innerText = property; 
-                                document.getElementById("razas").appendChild(opcion); 
-                            } 
-                        }); 
-                    }
-    
-
-                    document.getElementById("Peticion").addEventListener("click", () => {
-                        let opcion = document.getElementById("razas").value;
-                        fetch('https://dog.ceo/api/breeds/${opcion}/images/random')
-                        then(respuesta => respuesta.json())
-                        then(function(dato)  {
-                            document.getElementById("fotoperro").src = dato.message; 
-                        } )
-                    })
-
-
-    
-
-    </script>
-
-
-</body>
-</html> -->
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,9 +73,9 @@
                 });
         }
 
-        document.getElementById("btn5").addEventListener("click", () => { // Cambiado "Peticion" a "btn5"
+        document.getElementById("btn5").addEventListener("click", () => { 
             let opcion = document.getElementById("razas").value;
-            fetch(`https://dog.ceo/api/breed/${opcion}/images/random`) // Cambiado "${opcion}" a `https://dog.ceo/api/breed/${opcion}/images/random`
+            fetch(`https://dog.ceo/api/breed/${opcion}/images/random`) 
                 .then(respuesta => respuesta.json())
                 .then(function (dato) {
                     document.getElementById("fotoperro").src = dato.message;
