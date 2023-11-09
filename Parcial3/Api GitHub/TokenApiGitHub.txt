@@ -1,0 +1,54 @@
+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
+
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Token de GitHub</title>
+</head>
+<body>
+    <h1>Verificar Token de GitHub</h1>
+    <button id="verificarToken">Verificar Token</button>
+    <div id="userInfo"></div>
+
+    <script>
+        const token = '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';
+
+        document.getElementById('verificarToken').addEventListener('click', () => {
+            fetch('https://api.github.com/user', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        throw new Error('Error en la solicitud');
+                    }
+                })
+                .then(data => {
+                    const userInfo = document.getElementById('userInfo');
+                    userInfo.innerHTML = `
+                        <p><strong>Nombre de usuario:</strong> ${data.login}</p>
+                        <p><strong>ID de usuario:</strong> ${data.id}</p>
+                        <p><strong>Nombre completo:</strong> ${data.name}</p>
+                        <p><strong>Avatar:</strong></p>
+                        <img src="${data.avatar_url}" alt="Avatar de usuario">
+                    `;
+                })
+                .catch(error => {
+                    const userInfo = document.getElementById('userInfo');
+                    userInfo.innerHTML = `<p>Error: ${error.message}</p>`;
+                });
+        });
+    </script>
+</body>
+</html> -->

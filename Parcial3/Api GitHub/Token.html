@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+
+const token = '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';
+
+fetch('https://api.github.com/user', {
+  method: 'GET',
+  headers: {
+    'Authorization': `token ${token}`,
+    'Accept': 'application/json'
+  }
+})
+  .then(response => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error('Error en la solicitud');
+    }
+  })
+  .then(data => {
+    console.log('Datos del usuario:', data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
+
+
+
+</script>
+
+
+</body>
+</html>
+
+
+
