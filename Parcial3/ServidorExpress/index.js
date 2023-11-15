@@ -42,7 +42,7 @@ app.get('/alumnos', (req, res) => {
     console.log(consulta);
 
     connection.query(consulta, function (err, result, fields) {
-        // Cambié 'error' por 'err' en la línea siguiente
+        
         if (err) {
             res.json(err);
         } else {
@@ -53,7 +53,7 @@ app.get('/alumnos', (req, res) => {
             }
         }
     });
-    // Eliminé 'connection.end();', ya que no es necesario cerrar la conexión después de una única consulta
+    connection.end(); 
 });
 
 const port = 8082;
