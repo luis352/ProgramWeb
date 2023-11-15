@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <button type="button" id="btn_peticion">peticion</button>
+    </form>
+    <script>
+        document.getElementById("btn_peticion").addEventListener("click", async () => {
+            // Define el método que quieres usar, por ejemplo, "GET" o "POST"
+            let method = "GET";
+
+            // Realiza la solicitud fetch utilizando el método definido
+            let response = await fetch("http://localhost:8082", { method });
+            
+            // Lee la respuesta como texto
+            let data = await response.text();
+            
+            // Imprime los datos en la consola
+            console.log(data);
+        });
+    </script>
+</body>
+</html>
