@@ -11,16 +11,16 @@
     </form>
     <script>
         document.getElementById("btn_peticion").addEventListener("click", async () => {
-            // Define el método que quieres usar, por ejemplo, "GET" o "POST"
+            
             let method = "GET";
 
-            // Realiza la solicitud fetch utilizando el método definido
-            let response = await fetch("http://localhost:8082", { method });
             
-            // Lee la respuesta como texto
+            let response = await fetch("http://localhost:8082/alumnos", { method });
+            
+          
             let data = await response.text();
             
-            // Imprime los datos en la consola
+            
             console.log(data);
         });
     </script>
