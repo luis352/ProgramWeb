@@ -11,17 +11,11 @@
     </form>
     <script>
         document.getElementById("btn_peticion").addEventListener("click", async () => {
-            
             let method = "GET";
-
-            
             let response = await fetch("http://localhost:8082/alumnos", { method });
-            
-          
             let data = await response.text();
-            
-            
             console.log(data);
+
         });
     </script>
 </body>
