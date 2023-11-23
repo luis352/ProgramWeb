@@ -1,0 +1,19 @@
+.gridjs{
+    /* Agrega tus estilos personalizados aquí */
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  .gridjs th,
+  .gridjs td {
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .gridjs th {
+    background-color: #45d22f;
+  }
+  
+  .gridjs tr:nth-child(even) {
+    background-color: #dddddd;
+  }
