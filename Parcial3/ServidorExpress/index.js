@@ -6,6 +6,7 @@ const mysql = require('mysql2');
 
 const app = express();
 app.use(cors());  // Usa cors como middleware
+app.use(express.json());
 
 const connection = mysql.createConnection({
     host: '127.0.0.1',
@@ -40,23 +41,43 @@ app.get('/alumnos', (req, res) => {
     connection.end(); 
 });
 
+
+
 const port = 8082;
 app.listen(port, () => {
     console.log(`Servidor express en puerto ${port}`);
 });
 
-
-
-
-
-
-app.get('/alumnos', (req, res) => {
-    res.json({ mensaje: "Server express respondiendo a get" });
-});
-
 app.post('/alumnos', (req, res) => {
-    res.json({ mensaje: "Server express respondiendo a post" });
-});
+    
+
+    
+    let sentenciaSQL = "INSERT INTO alumnos VALUES (" + req.body.idNumeroControl + "," +
+      "'" + req.body.Nombres + "'," +
+      "'" + req.body.ApellidoPaterno + "'," +
+      "'" + req.body.ApellidoMaterno + "'," +
+      "'" + req.body.Sexo + "'," +
+      "'" + req.body.Edad + "'," +
+      "'" + req.body.IngresosM + "'," +
+      "'" + req.body.Carrera + "'" + ")";
+  
+    console.log(sentenciaSQL);
+  
+    connection.connect();
+    connection.query(sentenciaSQL, function (error, results, fields) {
+      if (error) {
+        res.json(error);
+      } else {
+        console.log(results);
+        res.json(results);
+      }
+    });
+  
+    connection.end();
+  });
+
+
+
 
 app.delete('/alumnos', (req, res) => {
     res.json({ mensaje: "Server express respondiendo a delete" });
