@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <form>
+    
+            <div class="form-group row">
+                <label for="idNumeroControl" class="col-sm-2 col-form-label">ID</label>
+                <div class="col-sm-4">
+                    <input id="idNumeroControl" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="Nombres" class="col-sm-2 col-form-label">Nombres</label>
+                <div class="col-sm-4">
+                    <input id="Nombres" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="ApellidoPaterno" class="col-sm-2 col-form-label">Apellido Paterno</label>
+                <div class="col-sm-4">
+                    <input id="ApellidoPaterno" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="ApellidoMaterno" class="col-sm-2 col-form-label">Apellido Materno</label>
+                <div class="col-sm-4">
+                    <input id="ApellidoMaterno" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <!-- <div class="form-group row">
+                <label for="Sexo" class="col-sm-2 col-form-label">Sexo</label>
+                <div class="col-sm-4">
+                    <input id="Sexo" type="text" class="form-control">
+                </div>
+            </div> -->
+            <div class="form-group row">
+                <label for="Sexo" class="col-sm-2 col-form-label">Sexo</label>
+                <div class="col-sm-4">
+                    <select id="Sexo" class="form-control">
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </div>
+            </div>
+
+
+    
+            <div class="form-group row">
+                <label for="Edad" class="col-sm-2 col-form-label">Edad</label>
+                <div class="col-sm-4">
+                    <input id="Edad" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="Carrera" class="col-sm-2 col-form-label">Carrera</label>
+                <div class="col-sm-4">
+                    <input id="Carrera" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="form-group row">
+                <label for="IngresosM" class="col-sm-2 col-form-label">Ingresos</label>
+                <div class="col-sm-4">
+                    <input id="IngresosM" type="text" class="form-control">
+                </div>
+            </div>
+    
+            <div class="text-center">
+                <button id="BtnConsulta" type="button" class="btn btn-primary mr-1">Consulta</button>
+                <button id="btnBorrar" type="button" class="btn btn-danger mr-1">Borrar</button>
+                <button id="btnAgregar" type="button" class="btn btn-success mr-1">Agregar</button>
+                <button id="btnActualizar" type="button" class="btn btn-info mr-1">Actualizar</button>
+                <button id="btnLimpiar" type="button" class="btn btn-secondary">Limpiar formulario</button>
+            </div>
+    
+            <div id="mensaje" class="error-message mt-3"></div>
+    
+        </form>
+    </div>
+    
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+    
+
+
+    <script>
+
+
+
+
+
+    document.getElementById("btnLimpiar").addEventListener("click", function() {
+    document.getElementById("idNumeroControl").value = '';
+    document.getElementById("Nombres").value = '';
+    document.getElementById("ApellidoPaterno").value = '';
+    document.getElementById("ApellidoMaterno").value = '';
+    document.getElementById("Sexo").value = '';
+    document.getElementById("Edad").value = '';
+    document.getElementById("IngresosM").value = '';
+    document.getElementById("Carrera").value = '';
+});
+
+
+document.getElementById("BtnConsulta").addEventListener("click", function() {
+    Swal.fire({
+        title: 'Teclea el número de control',
+        input: 'text',
+        showCancelButton: true,
+        confirmButtonText: 'Aceptar',
+        cancelButtonText: 'Cancelar',
+        allowOutsideClick: false,
+        inputValidator: (value) => {
+            if (!value) {
+                return 'Debe proporcionar el número de control.';
+            }
+        }
+    }).then((result) => {
+        if (!result.dismiss && result.value) {
+            const idNumeroControl = result.value;
+            fetch('http://localhost:8082/alumnos/' + idNumeroControl)
+                .then(respuesta => respuesta.json())
+                .then(ObjectCliente => {
+                    if (ObjectCliente.estado == 1) {
+                        document.getElementById("Nombres").value = ObjectCliente.resultado.Nombres;
+                        document.getElementById("idNumeroControl").value = ObjectCliente.resultado.idNumeroControl;
+                        document.getElementById("ApellidoPaterno").value = ObjectCliente.resultado.ApellidoPaterno;
+                        document.getElementById("ApellidoMaterno").value = ObjectCliente.resultado.ApellidoMaterno;
+                        document.getElementById("Sexo").value = ObjectCliente.resultado.Sexo;
+                        document.getElementById("Edad").value = ObjectCliente.resultado.Edad;
+                        document.getElementById("IngresosM").value = ObjectCliente.resultado.IngresosM;
+                        document.getElementById("Carrera").value = ObjectCliente.resultado.Carrera;
+
+                        document.getElementById("mensaje").innerHTML = '';
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Datos cargados correctamente.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error',
+                            text: ObjectCliente.resultado,
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+        }
+    });
+});
+
+
+    document.getElementById("btnBorrar").addEventListener("click", function() {
+    let idNumeroControl = document.getElementById("idNumeroControl").value;
+    fetch('http://localhost:8082/alumnos/' + idNumeroControl, { method: "DELETE" })
+        .then(respuesta => respuesta.json())
+        .then(ObjectCliente => {
+            if (ObjectCliente.estado == 1) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Éxito',
+                    text: ObjectCliente.resultado
+                });
+                document.getElementById("idNumeroControl").value = '';
+                document.getElementById("Nombres").value = '';
+                document.getElementById("ApellidoPaterno").value = '';
+                document.getElementById("ApellidoMaterno").value = '';
+                document.getElementById("Sexo").value = '';
+                document.getElementById("Edad").value = '';
+                document.getElementById("IngresosM").value = '';
+                document.getElementById("Carrera").value = '';
+
+                document.getElementById("mensaje").innerHTML = '';
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: ObjectCliente.resultado
+                });
+            }
+        });
+});
+
+
+
+        document.getElementById("btnAgregar").addEventListener("click", function() {
+    let idNumeroControl = document.getElementById("idNumeroControl").value;
+    let Nombres = document.getElementById("Nombres").value;
+    let ApellidoPaterno = document.getElementById("ApellidoPaterno").value;
+    let ApellidoMaterno = document.getElementById("ApellidoMaterno").value;
+    let Sexo = document.getElementById("Sexo").value;
+    let Edad = document.getElementById("Edad").value;
+    let IngresosM = document.getElementById("IngresosM").value;
+    let Carrera = document.getElementById("Carrera").value;
+
+    // Validar campos vacíos
+    if (
+        idNumeroControl === "" ||
+        Nombres === "" ||
+        ApellidoPaterno === "" ||
+        ApellidoMaterno === "" ||
+        Sexo === "" ||
+        Edad === "" ||
+        IngresosM === "" ||
+        Carrera === ""
+    ) {
+        alert("Faltan llenar campos.");
+        return; // Detener el flujo si hay campos vacíos
+    }
+
+    // Validar tipos de datos
+    if (
+        !Number.isInteger(Number(idNumeroControl)) ||
+        typeof Nombres !== "string" ||
+        typeof ApellidoPaterno !== "string" ||
+        typeof ApellidoMaterno !== "string" ||
+        typeof Sexo !== "string" ||
+        !Number.isInteger(Number(Edad)) ||
+        !Number.isInteger(Number(IngresosM)) ||
+        typeof Carrera !== "string"
+    ) {
+        alert("Verifique los tipos de datos.");
+        return; // Detener el flujo si hay tipos de datos incorrectos
+    }
+
+    let nuevoGenero = {
+        idNumeroControl: idNumeroControl,
+        Nombres: Nombres,
+        ApellidoPaterno: ApellidoMaterno,
+        ApellidoMaterno: ApellidoMaterno,
+        Sexo: Sexo,
+        Edad: Edad,
+        IngresosM: IngresosM,
+        Carrera: Carrera
+    };
+
+    fetch('http://localhost:8082/alumnos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(nuevoGenero)
+    })
+    .then(respuesta => {
+        if (respuesta.ok) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: 'Alumno agregado exitosamente.'
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Verifique los tipos de datos.'
+            });
+        }
+        return respuesta.json();
+    })
+    .then(resultado => {
+        console.log(resultado);
+    });
+});
+
+
+
+document.getElementById("btnActualizar").addEventListener("click", function(){
+
+//let id = document.getElementById("id").value;
+//let id = prompt("Teclee el ID del género musical");
+
+let idNumeroControl = document.getElementById("idNumeroControl").value;
+let Nombres = document.getElementById("Nombres").value;
+let ApellidoPaterno = document.getElementById("ApellidoPaterno").value;
+let ApellidoMaterno = document.getElementById("ApellidoMaterno").value;
+let Sexo = document.getElementById("Sexo").value;
+let Edad = document.getElementById("Edad").value;
+let IngresosM = document.getElementById("IngresosM").value;
+let Carrera = document.getElementById("Carrera").value;
+
+
+// Crear un objeto con los datos del nuevo género musical
+let nuevoAlumno = {
+    idNumeroControl: idNumeroControl,
+    Nombres: Nombres,
+    ApellidoPaterno: ApellidoPaterno,
+    ApellidoMaterno: ApellidoMaterno,
+    Sexo: Sexo,
+    Edad: Edad,
+    IngresosM: IngresosM, 
+    Carrera: Carrera
+
+};
+
+fetch('http://localhost:8082/alumnos/'+document.getElementById("idNumeroControl").value, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(nuevoAlumno)
+    })
+    .then(respuesta => respuesta.json())
+    .then(resultado => {
+        Swal.fire({
+            icon: 'success',
+            title: 'Éxito',
+            text: 'Alumno actualizado exitosamente.'
+        });
+        console.log(resultado);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+        
+
+
+
+</body>
+</html>
+
