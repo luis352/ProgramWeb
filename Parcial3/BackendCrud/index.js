@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-
+const exceljs = require('exceljs');
 var mysql = require('mysql2');
 
 app.use(express.json());
@@ -17,6 +17,7 @@ app.get('/alumnos', (req, res) => {
     password: 'Chispa10192',
     database: 'web'
   });
+
   connection.connect();
 
   connection.query('SELECT * from alumnos', function (error, results, fields) {
@@ -26,20 +27,36 @@ app.get('/alumnos', (req, res) => {
       if (results.length == 0) {
         res.json({ Mensaje: "Alumno no encontrado" });
       } else {
-        res.json(results);
+        // Generar el archivo Excel
+        const workbook = new exceljs.Workbook();
+        const worksheet = workbook.addWorksheet('Alumnos');
+        
+        // Asumiendo que los resultados son un array de objetos
+        const headers = Object.keys(results[0]);
+        worksheet.addRow(headers);
+
+        results.forEach(row => {
+          const values = Object.values(row);
+          worksheet.addRow(values);
+        });
+
+        // Enviar el archivo Excel como respuesta
+        res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        res.setHeader('Content-Disposition', 'attachment; filename=alumnos.xlsx');
+
+        workbook.xlsx.write(res)
+          .then(() => {
+            res.end();
+          })
+          .catch(err => {
+            res.json({ error: 'Error al escribir el archivo Excel' });
+          });
       }
     }
   });
 
   connection.end();
 });
-  
-
-
-
-
-
-
 
 
 
@@ -79,6 +96,13 @@ app.get('/alumnos/:idNumeroControl', (req, res) => {
     connection.end();
   }
 });
+
+
+
+
+
+
+
 
 app.delete('/alumnos/:idNumeroControl', (req, res) => {
       if (typeof(req.params.idNumeroControl) === 'undefined') {

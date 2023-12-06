@@ -98,9 +98,12 @@
     
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+
 
     
+
+
+
 
 
     <script>
@@ -146,6 +149,17 @@ document.getElementById("BtnConsulta").addEventListener("click", function() {
                         document.getElementById("ApellidoPaterno").value = ObjectCliente.resultado.ApellidoPaterno;
                         document.getElementById("ApellidoMaterno").value = ObjectCliente.resultado.ApellidoMaterno;
                         document.getElementById("Sexo").value = ObjectCliente.resultado.Sexo;
+                        let sexoCombo = document.getElementById("Sexo"); 
+                        if(ObjectCliente.resultado.Sexo === "M") {
+                            sexoCombo.value = "M"; 
+
+                        }else if(ObjectCliente.resultado.Sexo === "F"){
+                            sexoCombo.value = "F"; 
+                        }
+
+
+
+
                         document.getElementById("Edad").value = ObjectCliente.resultado.Edad;
                         document.getElementById("IngresosM").value = ObjectCliente.resultado.IngresosM;
                         document.getElementById("Carrera").value = ObjectCliente.resultado.Carrera;
