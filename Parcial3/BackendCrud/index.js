@@ -31,7 +31,7 @@ app.get('/alumnos', (req, res) => {
         const workbook = new exceljs.Workbook();
         const worksheet = workbook.addWorksheet('Alumnos');
         
-        // Asumiendo que los resultados son un array de objetos
+        
         const headers = Object.keys(results[0]);
         worksheet.addRow(headers);
 
